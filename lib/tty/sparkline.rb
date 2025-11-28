@@ -301,7 +301,7 @@ module TTY
     #
     # @api private
     def convert_to_bar(bar_index, offset)
-      return convert_non_numeric unless bar_index.is_a?(Numeric)
+      return convert_non_numeric(offset) unless bar_index.is_a?(Numeric)
 
       if bar_index >= offset * @num_of_bars
         bar_index -= offset * @num_of_bars
@@ -316,14 +316,14 @@ module TTY
     # @return [String]
     #
     # @api private
-    def convert_non_numeric
+    def convert_non_numeric(offset)
       case @non_numeric
       when :empty
         SPACE
       when :ignore
         EMPTY
       when :minimum
-        @bars[0]
+        offset > 0 ? SPACE : @bars[0]
       end
     end
   end # Sparkline
