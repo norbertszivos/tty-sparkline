@@ -1,3 +1,10 @@
+## unreleased
+
+### Fixed
+
+* Fix the non_numeric option use with minimum when rendering multiline charts
+  by Norbert Szivós (@norbertszivos)
+
 ## [v0.1.0] - 2021-05-20
 
 * Initial release

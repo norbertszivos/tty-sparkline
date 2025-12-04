@@ -313,6 +313,9 @@ module TTY
 
     # Convert non-numeric value into display string
     #
+    # @param [Integer] offset
+    #   the offset from the bottom
+    #
     # @return [String]
     #
     # @api private
@@ -323,7 +326,7 @@ module TTY
       when :ignore
         EMPTY
       when :minimum
-        offset > 0 ? SPACE : @bars[0]
+        offset.zero? ? @bars[0] : SPACE
       end
     end
   end # Sparkline
