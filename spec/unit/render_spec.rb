@@ -281,10 +281,13 @@ RSpec.describe TTY::Sparkline, "#render" do
         "████"
       ].join("\n"))
     end
+  end
 
-    it "renders chart with height set to 3 and non_numeric set to empty" do
-      sparkline = TTY::Sparkline.new([1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8],
-                                     height: 3)
+  context "with non_numeric" do
+    it "renders a 3-row-high chart with non-numeric values as empty" do
+      data = [1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8]
+      sparkline = described_class.new(data, height: 3)
+
       expect(sparkline.render).to eq([
         "        ▆",
         "     ▅█ █",
@@ -292,9 +295,10 @@ RSpec.describe TTY::Sparkline, "#render" do
       ].join("\n"))
     end
 
-    it "renders chart with height set to 3 and non_numeric set to ignore" do
-      sparkline = TTY::Sparkline.new([1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8],
-                                     height: 3, non_numeric: :ignore)
+    it "renders a 3-row-high chart without non-numeric values" do
+      data = [1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8]
+      sparkline = described_class.new(data, height: 3, non_numeric: :ignore)
+
       expect(sparkline.render).to eq([
         "     ▆",
         "   ▅██",
@@ -302,9 +306,10 @@ RSpec.describe TTY::Sparkline, "#render" do
       ].join("\n"))
     end
 
-    it "renders chart with height set to 3 and non_numeric set to minimum" do
-      sparkline = TTY::Sparkline.new([1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8],
-                                     height: 3, non_numeric: :minimum)
+    it "renders a 3-row-high chart with non-numeric values as minimum bars" do
+      data = [1, 2.4, "foo", 3.1, nil, 5.3, 6, "", 8]
+      sparkline = described_class.new(data, height: 3, non_numeric: :minimum)
+
       expect(sparkline.render).to eq([
         "        ▆",
         "     ▅█ █",

@@ -2,8 +2,8 @@
 
 ### Fixed
 
-* Fix the `non_numeric` option use with minimum when rendering multiline charts
-  by Norbert Szivós (@norbertszivos).
+* Fix non-numeric values rendering in multiline charts with the `non_numeric`
+  option configured to `minimum` by Norbert Szivós (@norbertszivos)
 
 ## [v0.1.0] - 2021-05-20
 
